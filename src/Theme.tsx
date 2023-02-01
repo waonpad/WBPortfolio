@@ -13,13 +13,18 @@ export const globalTheme = createTheme({
     },
     palette: {
         // mode: 'dark',
-        // primary: {
-        //     main: green[400],
-        //     contrastText: '#fff'
-        // },
-        background: {
-            default: '#f5f5f5',
+        primary: {
+            main: '#212121',
+            contrastText: '#fff'
         },
+        background: {
+            default: '#444444',
+        },
+        text: { primary: '#fff' },
+    },
+    typography: {
+        // fontFamily: ["sans-serif"].join(','),
+        // fontSize: 14
     },
     components: {
         MuiCssBaseline: {
@@ -33,6 +38,20 @@ export const globalTheme = createTheme({
         //             backgroundColor: '#f5f5f5',
         //         }
         //     }
-        // }
+        // },
+        MuiDrawer: {
+            styleOverrides: {
+                paper: {
+                    background: '#333333'
+                }
+            }
+        },
+        MuiListItemIcon: {
+            defaultProps: {
+                sx: {
+                    color: '#fff',
+                }
+            }
+        }
     }
 });
