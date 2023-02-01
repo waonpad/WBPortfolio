@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import View from './components/View';
-import Header from './components/Header';
+import View from './View';
 import Example from "./pages/Example";
 import Top from "./pages/Top";
 
@@ -10,12 +9,10 @@ const Root = () => {
     return (
         <View>
             <BrowserRouter>
-                <Header>
-                    <Routes>
-                        <Route path='/' exact element={<Top />} />
-                        <Route path='/example' exact element={<Example />} />
-                    </Routes>
-                </Header>
+                <Routes>
+                    <Route path='/' exact element={<Top />} />
+                    <Route path='/example' exact element={<Example />} />
+                </Routes>
             </BrowserRouter>
         </View>
     );
