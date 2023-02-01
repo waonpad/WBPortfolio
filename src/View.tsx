@@ -4,7 +4,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { globalTheme } from './Theme';
 
-function View({children}: any):React.ReactElement {
+type ViewProps = {
+    children: React.ReactElement;
+}
+
+function View(props: ViewProps):React.ReactElement {
+    const {children} = props;
 
     return (
         <ThemeProvider theme={globalTheme}>
