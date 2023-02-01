@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { globalTheme } from './Theme';
 
-function View({children}) {
+function View({children}: any):React.ReactElement {
 
     return (
         <ThemeProvider theme={globalTheme}>
