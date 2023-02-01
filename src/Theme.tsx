@@ -1,26 +1,38 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green, grey, yellow } from '@mui/material/colors';
 
+declare module '@mui/material/styles' {
+    interface BreakpointOverrides {
+        //   xs: false;
+        //   sm: false;
+        smd: true;
+        //   md: false;
+        //   lg: false;
+        //   xl: false;
+    }
+}
+
 export const globalTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
             sm: 600,
-            md: 769,
+            smd: 769,
+            md: 900,
             lg: 1000,
             xl: 1920,
         },
     },
     palette: {
-        // mode: 'dark',
-        primary: {
-            main: '#212121',
-            contrastText: '#fff'
-        },
-        background: {
-            default: '#444444',
-        },
-        text: { primary: '#fff' },
+        mode: 'dark',
+        // primary: {
+        //     main: '#121212',
+        //     contrastText: '#e1e1e1'
+        // },
+        // background: {
+        //     default: '#444444',
+        // },
+        // text: { primary: '#e1e1e1' },
     },
     typography: {
         // fontFamily: ["sans-serif"].join(','),
@@ -42,16 +54,9 @@ export const globalTheme = createTheme({
         MuiDrawer: {
             styleOverrides: {
                 paper: {
-                    background: '#333333'
+                    background: '#353535'
                 }
             }
         },
-        MuiListItemIcon: {
-            defaultProps: {
-                sx: {
-                    color: '#fff',
-                }
-            }
-        }
     }
 });
