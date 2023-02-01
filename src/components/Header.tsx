@@ -25,6 +25,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import ExternalLink from './ExternalLink';
 import SimpleFooter from './SimpleFooter';
+import MainVisual from './MainVisual';
+import Profile from './Profile';
+import { useElementClientRect } from '../hooks/ElementClientRect';
+import { useWindowDimensions } from '../hooks/WindowDimensions';
+import { styled } from '@mui/material';
 
 interface Props {
   /**
@@ -35,12 +40,22 @@ interface Props {
   children: React.ReactElement;
 }
 
+const StyledToolbar = styled(Toolbar)({
+    maxHeight: '64px',
+    minHeight: '64px'
+});
+
 export default function Header(props: Props) {
     const { window, children } = props;
+
+    const {width} = useWindowDimensions();
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const projectName = 'Awesome Header';
     const drawerWidth = 240;
+
+    const headerRef = useRef(null);
+    const {clientRect: headerClientRect} = useElementClientRect(headerRef);
 
     const mailAddress = 'hoge@example.com';
     const defaultSubject = '件名';
@@ -82,22 +97,36 @@ export default function Header(props: Props) {
 
     const drawer = (
         <Box>
-            <Toolbar />
-            <Divider />
+            <StyledToolbar />
             <List disablePadding>
                 {drawerItems.map((item, index) => (
-                    <ListItem key={item.text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {item.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={item.text} />
-                        </ListItemButton>
-                    </ListItem>
+                    <React.Fragment key={item.text}>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        </ListItem>
+                        <Divider />
+                    </React.Fragment>
                 ))}
             </List>
-            <Box sx={{position: 'absolute', bottom: '8px', display: 'flex', alignItems: "center", justifyContent: "center", width: '100%'}}>
-                <SimpleFooter wrap={true} />
+            <Box sx={{position: 'absolute', bottom: '8px', width: '100%'}}>
+                <Box sx={{display: 'flex', gap: '0 4px', alignItems: "center", justifyContent: "center", width: '100%'}}>
+                    {navItems.map((item) => (
+                        <IconButton key={item.url} sx={{ color: '#fff' }}>
+                            <ExternalLink
+                                url={item.url}
+                                style={{color: 'inherit'}}
+                            >
+                                {item.icon}
+                            </ExternalLink>
+                        </IconButton>
+                    ))}
+                </Box>
+                <SimpleFooter wrap={true} style={{marginTop: 1}} />
             </Box>
         </Box>
     );
@@ -107,48 +136,49 @@ export default function Header(props: Props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <AppBar
+                ref={headerRef}
                 component="nav"
                 position="fixed"
                 sx={{
-                    // width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    // ml: { sm: `${drawerWidth}px` },
-                    zIndex: (theme) => theme.zIndex.drawer + 1
+                    // width: { md: `calc(100% - ${drawerWidth}px)` },
+                    // ml: { md: `${drawerWidth}px` },
+                    zIndex: (theme) => theme.zIndex.drawer + 1,
                 }}
             >
-                <Toolbar>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' } }}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' }, fontWeight: 'bold' }}
-                >
-                    {projectName}
-                </Typography>
-                <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
-                    {navItems.map((item) => (
-                    <IconButton key={item.url} sx={{ color: '#fff' }}>
-                        <ExternalLink
-                            url={item.url}
-                            style={{color: 'inherit'}}
-                        >
-                            {item.icon}
-                        </ExternalLink>
+                <StyledToolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { md: 'none' } }}
+                    >
+                        <MenuIcon />
                     </IconButton>
-                    ))}
-                </Box>
-                </Toolbar>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'block', md: 'block' }, fontWeight: 'bold' }}
+                    >
+                        {projectName}
+                    </Typography>
+                    <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
+                        {navItems.map((item) => (
+                            <IconButton key={item.url} sx={{ color: '#fff' }}>
+                                <ExternalLink
+                                    url={item.url}
+                                    style={{color: 'inherit'}}
+                                >
+                                    {item.icon}
+                                </ExternalLink>
+                            </IconButton>
+                        ))}
+                    </Box>
+                </StyledToolbar>
             </AppBar>
             <Box
                 component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
             >
                 <Drawer
                     container={container}
@@ -159,7 +189,7 @@ export default function Header(props: Props) {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', md: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                 >
@@ -168,7 +198,7 @@ export default function Header(props: Props) {
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: { xs: 'none', sm: 'block' },
+                        display: { xs: 'none', md: 'block' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                     open
@@ -176,9 +206,24 @@ export default function Header(props: Props) {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
+            <Box component="main" sx={{flexGrow: 1, p: 0, width: { md: `calc(100% - ${drawerWidth}px)` }}}>
                 <Toolbar />
-                {children}
+                <MainVisual headerClientRect={headerClientRect} />
+                <Box
+                    sx={{position: 'absolute', transform: {xs: 'translate(50%, 0)', sm: 'translate(0, 0)'}, right: {xs: '50%', sm: '40px'}, top: '104px', width: '500px', maxWidth: width ? `${width * 0.95}px` : 0}}
+                >
+                    <Profile
+                        style={{
+                            opacity: 0.9,
+                            '& .MuiCardContent-root': {
+                                minHeight: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px - 80px)`
+                            }
+                        }}
+                    />
+                </Box>
+                <Box sx={{p: 2}}>
+                    {children}
+                </Box>
             </Box>
         </Box>
     );
