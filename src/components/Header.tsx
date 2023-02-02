@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -58,18 +58,25 @@ export default function Header(props: Props) {
         setMobileOpen((prevState) => !prevState);
     };
 
+    useEffect(() => {
+        setMobileOpen(false);
+    }, [location]);
+
     const drawerItems = [
         {
             icon: <HomeIcon />,
-            title: 'TOP'
+            title: 'TOP',
+            url: '/'
         },
         {
             icon: <AccountCircleIcon />,
-            title: 'ABOUT'
+            title: 'ABOUT',
+            url: '/about'
         },
         {
             icon: <EngineeringIcon />,
-            title: 'WORKS'
+            title: 'WORKS',
+            url: '/works'
         }
     ]
 
@@ -80,8 +87,8 @@ export default function Header(props: Props) {
                 {drawerItems.map((item, index) => (
                     <React.Fragment key={item.title}>
                         <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
+                            <ListItemButton component={Link} to={item.url}>
+                                <ListItemIcon sx={{ color: 'inherit' }}>
                                     {item.icon}
                                 </ListItemIcon>
                                 <ListItemText primary={item.title} />
@@ -94,7 +101,7 @@ export default function Header(props: Props) {
             <Box sx={{position: 'absolute', bottom: '8px', width: '100%'}}>
                 <Box sx={{display: 'flex', gap: '0 4px', alignItems: "center", justifyContent: "center", width: '100%'}}>
                     {user.links.map((item) => (
-                        <IconButton key={item.url} sx={{ color: '#fff' }}>
+                        <IconButton key={item.url} sx={{ color: 'inherit' }}>
                             <ExternalLink
                                 url={item.url}
                                 style={{color: 'inherit'}}
@@ -142,7 +149,7 @@ export default function Header(props: Props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
                         {user.links.map((item) => (
-                            <IconButton key={item.url} sx={{ color: '#fff' }}>
+                            <IconButton key={item.url} sx={{ color: 'inherit' }}>
                                 <ExternalLink
                                     url={item.url}
                                     style={{color: 'inherit'}}
@@ -214,7 +221,7 @@ export default function Header(props: Props) {
                     >
                     <ProfileCard
                         style={{
-                            display: {xs: 'block', sm: 'none'},
+                            display: {xs: location.pathname === '/' ? 'block' : 'none', sm: 'none'},
                             mb: 4
                         }}
                     />

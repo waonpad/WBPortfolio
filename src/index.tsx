@@ -16,6 +16,7 @@ function Root ():React.ReactElement {
                 <Header>
                     <Routes>
                         <Route path='/' element={<Top />} />
+                        <Route path='/works' element={<Top />} />
                         <Route path='/about' element={<Profile />} />
                         <Route path='/work/:workId' element={<Work />} />
                         <Route path='/example' element={<Example />} />

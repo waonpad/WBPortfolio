@@ -29,12 +29,12 @@ export const globalTheme = createTheme({
         mode: 'dark',
         primary: {
             main: '#f00',
-            // contrastText: '#e1e1e1'
+            contrastText: '#e1e1e1'
         },
         // background: {
         //     default: '#444444',
         // },
-        // text: { primary: '#e1e1e1' },
+        text: {primary: '#e1e1e1'},
     },
     typography: {
         // fontFamily: ["sans-serif"].join(','),

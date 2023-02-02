@@ -10,7 +10,7 @@ type WorkCardProps = {
 }
 
 const StyledDivider = styled(Divider)({
-    opacity: 0.5,
+    opacity: 0.7,
     borderColor: '#f00',
     marginBottom: '8px'
 })
