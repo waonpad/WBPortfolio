@@ -18,7 +18,8 @@ function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
                 //     md: `calc(50vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 //     lg: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 // },
-                background: `url(${window.location.origin}/images/main_visual.png) center / cover`,
+                // background: `url(${window.location.origin}/images/main_visual.png) center / cover`,
+                background: `rgba(60,60,60)`,
             }}
         >
             <></>

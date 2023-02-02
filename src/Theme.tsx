@@ -25,10 +25,10 @@ export const globalTheme = createTheme({
     },
     palette: {
         mode: 'dark',
-        // primary: {
-        //     main: '#121212',
-        //     contrastText: '#e1e1e1'
-        // },
+        primary: {
+            main: '#f00',
+            // contrastText: '#e1e1e1'
+        },
         // background: {
         //     default: '#444444',
         // },
@@ -45,9 +45,9 @@ export const globalTheme = createTheme({
             }
         },
         // MuiBackdrop: {
-        //     defaultProps: {
-        //         sx: {
-        //             backgroundColor: '#f5f5f5',
+        //     styleOverrides: {
+        //         root: {
+        //             backgroundColor: '#353535'
         //         }
         //     }
         // },
@@ -58,5 +58,13 @@ export const globalTheme = createTheme({
                 }
             }
         },
+        // MuiDivider: {
+        //     styleOverrides: {
+        //         root: {
+        //             opacity: 0.5,
+        //             borderColor: '#f00'
+        //         }
+        //     }
+        // }
     }
 });
