@@ -3,7 +3,7 @@ import React, { CSSProperties } from "react";
 type ExternalLinkProps = {
     url: string;
     children: React.ReactElement;
-    style?: CSSProperties;
+    style?: CSSProperties | {[key: string]: CSSProperties};
 }
 
 function ExternalLink (props: ExternalLinkProps):React.ReactElement {

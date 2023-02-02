@@ -7,6 +7,7 @@ declare module '@mui/material/styles' {
         //   sm: false;
         smd: true;
         //   md: false;
+        lmd: true;
         //   lg: false;
         //   xl: false;
     }
@@ -19,8 +20,9 @@ export const globalTheme = createTheme({
             sm: 600,
             smd: 769,
             md: 900,
-            lg: 1000,
-            xl: 1920,
+            lmd: 1000,
+            lg: 1200,
+            xl: 1536,
         },
     },
     palette: {

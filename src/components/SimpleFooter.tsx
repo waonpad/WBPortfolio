@@ -1,9 +1,10 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, SxProps, Theme } from '@mui/material';
+import { projectName } from '../data/userData';
 
 type SimpleFooterProps = {
     wrap?: boolean;
-    style?: CSSProperties;
+    style?: SxProps<Theme> | undefined
 }
 
 function SimpleFooter(props: SimpleFooterProps): React.ReactElement {
@@ -11,7 +12,7 @@ function SimpleFooter(props: SimpleFooterProps): React.ReactElement {
 
     return (
         <Box sx={{...style, display: 'flex', alignItems: "center", justifyContent: "center"}}>
-            <Typography sx={{whiteSpace: 'pre-line', textAlign: 'center'}}>Copryright &copy; 2023 {wrap && "\n"} Awesome Drawer.</Typography>
+            <Typography sx={{whiteSpace: 'pre-line', textAlign: 'center'}}>Copryright &copy; 2023 {wrap && "\n"} {projectName}.</Typography>
         </Box>
     )
 }
