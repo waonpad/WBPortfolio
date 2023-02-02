@@ -30,12 +30,9 @@ import ProfileCard from './ProfileCard';
 import { useElementClientRect } from '../hooks/ElementClientRect';
 import { useWindowDimensions } from '../hooks/WindowDimensions';
 import { styled } from '@mui/material';
+import { user, projectName } from '../data/userData';
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window;
   children: React.ReactElement;
 }
@@ -52,30 +49,10 @@ export default function Header(props: Props) {
     const {width} = useWindowDimensions();
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const projectName = 'Awesome Header';
-    const drawerWidth = 240;
+    const drawerWidth = 220;
 
     const headerRef = useRef(null);
     const {clientRect: headerClientRect} = useElementClientRect(headerRef);
-
-    const mailAddress = 'hoge@example.com';
-    const defaultSubject = '件名';
-    const defaultBody = 'メール本文';
-
-    const navItems = [
-        {
-            icon: <GitHubIcon />,
-            url: 'https://github.com'
-        },
-        {
-            icon: <TwitterIcon />,
-            url: 'https://twitter.com'
-        },
-        {
-            icon: <EmailIcon />,
-            url: `https://mail.google.com/mail/?view=cm&to=${mailAddress}&su=${defaultSubject}&body=${defaultBody}`
-        }
-    ];
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -116,7 +93,7 @@ export default function Header(props: Props) {
             </List>
             <Box sx={{position: 'absolute', bottom: '8px', width: '100%'}}>
                 <Box sx={{display: 'flex', gap: '0 4px', alignItems: "center", justifyContent: "center", width: '100%'}}>
-                    {navItems.map((item) => (
+                    {user.links.map((item) => (
                         <IconButton key={item.url} sx={{ color: '#fff' }}>
                             <ExternalLink
                                 url={item.url}
@@ -164,7 +141,7 @@ export default function Header(props: Props) {
                         {projectName}
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
-                        {navItems.map((item) => (
+                        {user.links.map((item) => (
                             <IconButton key={item.url} sx={{ color: '#fff' }}>
                                 <ExternalLink
                                     url={item.url}
@@ -213,10 +190,10 @@ export default function Header(props: Props) {
                     <MainVisual headerClientRect={headerClientRect} />
                     <Box
                         sx={{
+                            display: {xs: 'none', sm: 'block'},
                             position: 'absolute',
-                            transform: {xs: 'translate(50%, 0)', sm: 'translate(0, 0)'},
-                            right: {xs: '50%', sm: '40px'},
-                            top: {xs: `calc(100vh + 20px)`, sm: '104px'},
+                            right: '40px',
+                            top: '104px',
                             width: '500px',
                             maxWidth: width ? `${width * 0.95}px` : 0
                         }}
@@ -229,7 +206,18 @@ export default function Header(props: Props) {
                         />
                     </Box>
                 </Box>
-                <Box sx={{p: 2, pb: 100}}>
+                <Box
+                    sx={{
+                        p: 2,
+                        pb: 100, // テスト用
+                    }}
+                    >
+                    <ProfileCard
+                        style={{
+                            display: {xs: 'block', sm: 'none'},
+                            mb: 4
+                        }}
+                    />
                     {children}
                 </Box>
             </Box>

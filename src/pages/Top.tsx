@@ -4,7 +4,7 @@ import WorkList from '../components/WorkList';
 
 function Top ():React.ReactElement {
     return(
-        <Container>
+        <Container maxWidth={false} disableGutters>
             <WorkList />
         </Container>
     )
