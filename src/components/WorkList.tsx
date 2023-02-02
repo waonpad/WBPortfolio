@@ -9,7 +9,7 @@ type WorkListProps = {
 const StyledDivider = styled(Divider)({
     opacity: 0.8,
     borderColor: '#f00',
-    marginBottom: '16px'
+    marginBottom: '24px'
 })
 
 export default function WorkList(props: WorkListProps):React.ReactElement {

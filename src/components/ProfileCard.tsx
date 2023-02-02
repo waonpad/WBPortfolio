@@ -9,7 +9,7 @@ type ProdileCardProps = {
 }
 
 const StyledDivider = styled(Divider)({
-    opacity: 0.5,
+    opacity: 0.7,
     borderColor: '#f00',
     marginBottom: '8px'
 })
@@ -58,7 +58,7 @@ function ProfileCard(props: ProdileCardProps):React.ReactElement {
                 </Grid>
             </CardContent>
             <CardActions sx={{position: 'absolute', bottom: 0, pl: '12px'}} ref={cardActionsRef}>
-                <Button size="small" component={Link} to={'/'}>Learn More</Button>
+                <Button size="small" component={Link} to={'/about'}>Learn More</Button>
             </CardActions>
         </Card>
     )
