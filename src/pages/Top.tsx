@@ -1,9 +1,12 @@
 import React from 'react';
-import Profile from '../components/Profile';
+import { Container } from '@mui/material';
+import WorkList from '../components/WorkList';
 
 function Top ():React.ReactElement {
     return(
-        <></>
+        <Container>
+            <WorkList />
+        </Container>
     )
 }
 

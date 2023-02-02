@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,7 +26,7 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import ExternalLink from './ExternalLink';
 import SimpleFooter from './SimpleFooter';
 import MainVisual from './MainVisual';
-import Profile from './Profile';
+import ProfileCard from './ProfileCard';
 import { useElementClientRect } from '../hooks/ElementClientRect';
 import { useWindowDimensions } from '../hooks/WindowDimensions';
 import { styled } from '@mui/material';
@@ -48,6 +48,7 @@ const StyledToolbar = styled(Toolbar)({
 export default function Header(props: Props) {
     const { window, children } = props;
 
+    const location = useLocation();
     const {width} = useWindowDimensions();
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -83,15 +84,15 @@ export default function Header(props: Props) {
     const drawerItems = [
         {
             icon: <HomeIcon />,
-            text: 'TOP'
+            title: 'TOP'
         },
         {
             icon: <AccountCircleIcon />,
-            text: 'PROFILE'
+            title: 'ABOUT'
         },
         {
             icon: <EngineeringIcon />,
-            text: 'WORKS'
+            title: 'WORKS'
         }
     ]
 
@@ -100,13 +101,13 @@ export default function Header(props: Props) {
             <StyledToolbar />
             <List disablePadding>
                 {drawerItems.map((item, index) => (
-                    <React.Fragment key={item.text}>
+                    <React.Fragment key={item.title}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {item.icon}
                                 </ListItemIcon>
-                                <ListItemText primary={item.text} />
+                                <ListItemText primary={item.title} />
                             </ListItemButton>
                         </ListItem>
                         <Divider />
@@ -207,21 +208,28 @@ export default function Header(props: Props) {
                 </Drawer>
             </Box>
             <Box component="main" sx={{flexGrow: 1, p: 0, width: { md: `calc(100% - ${drawerWidth}px)` }}}>
-                <Toolbar />
-                <MainVisual headerClientRect={headerClientRect} />
-                <Box
-                    sx={{position: 'absolute', transform: {xs: 'translate(50%, 0)', sm: 'translate(0, 0)'}, right: {xs: '50%', sm: '40px'}, top: '104px', width: '500px', maxWidth: width ? `${width * 0.95}px` : 0}}
-                >
-                    <Profile
-                        style={{
-                            opacity: 0.9,
-                            '& .MuiCardContent-root': {
-                                minHeight: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px - 80px)`
-                            }
+                <StyledToolbar />
+                <Box sx={{display: location.pathname === '/' ? 'block' : 'none'}}>
+                    <MainVisual headerClientRect={headerClientRect} />
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            transform: {xs: 'translate(50%, 0)', sm: 'translate(0, 0)'},
+                            right: {xs: '50%', sm: '40px'},
+                            top: {xs: `calc(100vh + 20px)`, sm: '104px'},
+                            width: '500px',
+                            maxWidth: width ? `${width * 0.95}px` : 0
                         }}
-                    />
+                    >
+                        <ProfileCard
+                            style={{
+                                background: 'rgba(30, 30, 30)',
+                                minHeight: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px - 80px)`
+                            }}
+                        />
+                    </Box>
                 </Box>
-                <Box sx={{p: 2}}>
+                <Box sx={{p: 2, pb: 100}}>
                     {children}
                 </Box>
             </Box>
