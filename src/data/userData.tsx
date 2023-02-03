@@ -2,6 +2,10 @@ import React, { useRef } from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import ComputerIcon from '@mui/icons-material/Computer';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 
 export const projectName: string = 'Awesome Portfolio';
 
@@ -12,7 +16,14 @@ export type userData = {
     lisences: string[];
     overview: string;
     description: string;
-    career: string; // 変更するかも
+    career: {
+        title: string;
+        icon?: JSX.Element;
+        content: {
+            title: string;
+            text: string;
+        }
+    }[];
     links: {
         icon: JSX.Element;
         url: string;
@@ -39,7 +50,48 @@ export const user: userData = {
     ],
     overview: `テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。${"\n"}テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと、テキストてきすと文章。テキストてきすと、テキストてきすと文章。テキストてきすと、`,
     description: `ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、${"\n"}デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。${"\n"}ですくりぷしょんdescription、デスクリプション説明。ですくりぷしょんdescription、デスクリプション説明。`,
-    career: `経歴キャリアcareerきゃりあ経歴キャリアcareerきゃりあ${"\n"}経歴キャリアcareerきゃりあ経歴キャリアcareerきゃりあ経歴キャリア${"\n"}careerきゃりあ経歴キャリアcareerきゃりあ経歴キャリアcareerきゃりあ`,
+    career: [
+        {
+            title: '2001 / 4 / 7',
+            icon: <AccessibilityNewIcon />,
+            content: {
+                title: 'Born',
+                text: `大阪で産まれる。${"\n"}3歳の時に愛知に引っ越してきたので関西弁は喋れない`
+            }
+        },
+        {
+            title: '2020 / 4',
+            icon: <ComputerIcon />,
+            content: {
+                title: 'Enrollment',
+                text: `HAL名古屋に入学。${"\n"}テキストテキストテキスト`
+            }
+        },
+        {
+            title: '2022 / 7',
+            icon: <TipsAndUpdatesIcon />,
+            content: {
+                title: 'Inflection Point',
+                text: `React, TypeScript, Laravel, Material UIに出会う。${"\n"}これまでフレームワークと言えばJQueryくらいしか触っていなかったため情報量の多さに圧倒されながらプログラミングが一気に楽しくなる。`
+            }
+        },
+        {
+            title: 'Now',
+            icon: <SensorOccupiedIcon />,
+            content: {
+                title: 'Job Hunting',
+                text: `就職活動中...`
+            }
+        },
+        // {
+        //     title: '',
+        //     icon: undefined,
+        //     content: {
+        //         title: '',
+        //         text: ``
+        //     }
+        // },
+    ],
     links: [
         {
             icon: <GitHubIcon />,
