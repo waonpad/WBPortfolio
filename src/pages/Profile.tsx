@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Container, Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 import { user } from '../data/userData';
 
 type ProfileProps = {
@@ -92,19 +99,74 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                         </Card>
                     </Grid>
                     <Grid item xs={12}>
-                        <Card elevation={1}>
+                        {/* <Card elevation={1}>
                             <CardContent>
                                 <Grid container spacing={1}>
-                                    <Grid item xs={12}>
+                                    <Grid item xs={12}> */}
                                         <Typography variant='h5'>Career</Typography>
                                         <StyledDivider />
-                                        <Typography variant='body1' sx={{whiteSpace: 'pre-line'}}>
-                                            {user.career}
-                                        </Typography>
-                                    </Grid>
+                                        <Timeline
+                                            position="right"
+                                            onResize={undefined}
+                                            onResizeCapture={undefined}
+                                            sx={{
+                                                px: 0,
+                                                [`& .${timelineOppositeContentClasses.root}`]: {
+                                                    flex: 0.15,
+                                                },
+                                            }}
+                                        >
+                                            {user.career.map((career) => (
+                                                <TimelineItem key={career.title} sx={{minWidth: {xs: '100%', sm: 'auto'}}}>
+                                                    <TimelineOppositeContent
+                                                        sx={{ m: '14px 0 0 0', pl: 0, display: {xs: 'none', sm: 'block'} }}
+                                                        align="right"
+                                                        variant="body2"
+                                                        color="text.secondary"
+                                                    >
+                                                        {career.title}
+                                                    </TimelineOppositeContent>
+                                                    <TimelineSeparator sx={{minWidth: {xs: '100%', sm: 'auto'}}}>
+                                                        {/* <TimelineConnector /> */}
+                                                        <TimelineDot variant="outlined" sx={{display: {xs: 'none', sm: 'flex'}}}>
+                                                            {career.icon}
+                                                        </TimelineDot>
+                                                        <Box sx={{minWidth: '100%', py: '12px', display: {xs: 'block', sm: 'none'}}}>
+                                                            <Card elevation={1}>
+                                                                <CardContent>
+                                                                    {/* career.titleも入れる */}
+                                                                    <Typography variant="h6">
+                                                                        {career.content.title}
+                                                                    </Typography>
+                                                                    <StyledDivider sx={{opacity: 0.5}} />
+                                                                    <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
+                                                                        {career.content.text}
+                                                                    </Typography>
+                                                                </CardContent>
+                                                            </Card>
+                                                        </Box>
+                                                        <TimelineConnector sx={{height: {xs: '24px', sm: 'auto'}}} />
+                                                    </TimelineSeparator>
+                                                    <TimelineContent sx={{ py: '12px', pl: 2, pr: 0, display: {xs: 'none', sm: 'block'} }}>
+                                                        <Card elevation={1}>
+                                                            <CardContent>
+                                                                <Typography variant="h6">
+                                                                    {career.content.title}
+                                                                </Typography>
+                                                                <StyledDivider sx={{opacity: 0.5}} />
+                                                                <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
+                                                                    {career.content.text}
+                                                                </Typography>
+                                                            </CardContent>
+                                                        </Card>
+                                                    </TimelineContent>
+                                                </TimelineItem>
+                                            ))}
+                                        </Timeline>
+                                    {/* </Grid>
                                 </Grid>
                             </CardContent>
-                        </Card>
+                        </Card> */}
                     </Grid>
                 </Grid>
             </Grid>
