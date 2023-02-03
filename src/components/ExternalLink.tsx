@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 
 type ExternalLinkProps = {
     url: string;
-    children: React.ReactElement;
+    children: React.ReactNode;
     style?: CSSProperties | {[key: string]: CSSProperties};
 }
 

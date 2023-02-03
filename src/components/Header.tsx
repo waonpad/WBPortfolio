@@ -30,11 +30,11 @@ import ProfileCard from './ProfileCard';
 import { useElementClientRect } from '../hooks/ElementClientRect';
 import { useWindowDimensions } from '../hooks/WindowDimensions';
 import { styled } from '@mui/material';
-import { user, projectName } from '../data/userData';
+import { user, projectName } from '../data/UserData';
 
 interface Props {
   window?: () => Window;
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const StyledToolbar = styled(Toolbar)({
