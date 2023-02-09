@@ -4,7 +4,7 @@ import { Container, Divider, Box, Grid, Fab, Dialog, Typography, Avatar, Card, C
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CollectionsIcon from '@mui/icons-material/Collections';
-import { works, WorkData } from '../data/WorkData';
+import { works, WorkData } from '../data/works/WorkData';
 import { useWindowDimensions } from '../hooks/useWindowDimensions';
 
 type WorkGalleryDialogProps = {

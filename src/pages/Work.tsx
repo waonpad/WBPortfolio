@@ -6,7 +6,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import WorkCard from '../components/WorkCard';
 import WorkGalleryDialog from '../components/WorkGalleryDialog';
-import { works } from '../data/WorkData';
+import { works } from '../data/works/WorkData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 
 type WorkProps = {

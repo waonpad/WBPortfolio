@@ -33,8 +33,8 @@ import ProfileCard from './ProfileCard';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { useWindowDimensions } from '../hooks/useWindowDimensions';
 import { styled } from '@mui/material';
-import { user, projectName } from '../data/UserData';
-import { works } from '../data/WorkData';
+import { user, projectName } from '../data/user/UserData';
+import { works } from '../data/works/WorkData';
 
 interface Props {
   window?: () => Window;

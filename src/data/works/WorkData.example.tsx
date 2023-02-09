@@ -6,6 +6,10 @@ export type WorkData = {
         url: string;
     }[];
     builtWith: string[];
+    thumbnail: {
+        title: string;
+        path: string;
+    };
     images: {
         title: string;
         path: string;
@@ -30,6 +34,10 @@ export const works: WorkData[] = [
             }
         ],
         builtWith: ['HTML', 'CSS', 'JS'],
+        thumbnail: {
+            title: 'サムネイル',
+            path: 'thumbnail.png'
+        },
         images: [
             {
                 title: 'メイン画像',
@@ -57,6 +65,10 @@ export const works: WorkData[] = [
             }
         ],
         builtWith: ['HTML', 'CSS', 'JS'],
+        thumbnail: {
+            title: 'サムネイル',
+            path: 'thumbnail.png'
+        },
         images: [
             {
                 title: 'メイン画像',
@@ -84,6 +96,10 @@ export const works: WorkData[] = [
             }
         ],
         builtWith: ['HTML', 'CSS', 'JS'],
+        thumbnail: {
+            title: 'サムネイル',
+            path: 'thumbnail.png'
+        },
         images: [
             {
                 title: 'メイン画像',
@@ -111,6 +127,10 @@ export const works: WorkData[] = [
             }
         ],
         builtWith: ['HTML', 'CSS', 'JS'],
+        thumbnail: {
+            title: 'サムネイル',
+            path: 'thumbnail.png'
+        },
         images: [
             {
                 title: 'メイン画像',
@@ -138,6 +158,10 @@ export const works: WorkData[] = [
             }
         ],
         builtWith: ['HTML', 'CSS', 'JS'],
+        thumbnail: {
+            title: 'サムネイル',
+            path: 'thumbnail.png'
+        },
         images: [
             {
                 title: 'メイン画像',

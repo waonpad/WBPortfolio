@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import { Box, Typography, SxProps, Theme } from '@mui/material';
-import { projectName } from '../data/UserData';
+import { projectName } from '../data/user/UserData';
 
 type SimpleFooterProps = {
     wrap?: boolean;
