@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
 import { user } from '../data/UserData';
-import { useElementClientRect } from '../hooks/ElementClientRect';
+import { useElementClientRect } from '../hooks/useElementClientRect';
 
 type ProdileCardProps = {
     style?: SxProps<Theme> | undefined

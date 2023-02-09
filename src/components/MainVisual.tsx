@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { ClientRect } from '../hooks/ElementClientRect';
+import { ClientRect } from '../hooks/useElementClientRect';
 
 function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
     const {headerClientRect} = props;
