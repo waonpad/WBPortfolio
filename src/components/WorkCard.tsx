@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, CardMedia, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
-import { useElementClientRect } from '../hooks/ElementClientRect';
+import { useElementClientRect } from '../hooks/useElementClientRect';
 import { WorkData } from '../data/WorkData';
 
 type WorkCardProps = {
@@ -36,6 +36,22 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
                         <Typography variant='h5'>
                             {work.title}
                         </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Typography variant='h6'>Links</Typography>
+                        <StyledDivider />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'left',
+                                flexWrap: 'wrap',
+                                gap: '4px 4px'
+                            }}
+                        >
+                            {work.links.map((link, index) => (
+                                <Chip key={index} label={link.title} component={Link} to={link.url} target='_blank' clickable />
+                            ))}
+                        </Box>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Built with</Typography>

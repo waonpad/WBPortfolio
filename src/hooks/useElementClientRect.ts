@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, MutableRefObject } from "react";
-import { useWindowDimensions } from "./WindowDimensions";
+import { useWindowDimensions } from "./useWindowDimensions";
 
 export type ClientRect = {
     x: number;

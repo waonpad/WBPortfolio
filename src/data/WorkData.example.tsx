@@ -44,7 +44,7 @@ export const works: WorkData[] = [
         detail: '詳しい説明',
     },
     {
-        id: 0,
+        id: 1,
         title: '題名タイトルねーむ題名タイトルねーむ',
         links: [
             {
@@ -71,7 +71,7 @@ export const works: WorkData[] = [
         detail: '詳しい説明',
     },
     {
-        id: 0,
+        id: 2,
         title: '題名タイトルねーむ',
         links: [
             {
@@ -98,7 +98,7 @@ export const works: WorkData[] = [
         detail: '詳しい説明',
     },
     {
-        id: 0,
+        id: 3,
         title: '題名タイトルねーむ',
         links: [
             {
@@ -125,7 +125,7 @@ export const works: WorkData[] = [
         detail: '詳しい説明',
     },
     {
-        id: 0,
+        id: 4,
         title: '題名タイトルねーむ',
         links: [
             {

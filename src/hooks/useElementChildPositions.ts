@@ -1,6 +1,6 @@
 import { useState, useEffect, MutableRefObject } from 'react';
-import { useElementClientRect } from './ElementClientRect';
-import useElementChildScroll from './ElementChildScroll';
+import { useElementClientRect } from './useElementClientRect';
+import useElementChildScroll from './useElementChildScroll';
 
 function useElementChildPositions(parentRef: MutableRefObject<HTMLElement | null>, childRefs: MutableRefObject<{[key: string]: HTMLElement} | null>) {
     const {clientRect: parentRect} = useElementClientRect(parentRef);

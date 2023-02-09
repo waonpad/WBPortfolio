@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,6 +13,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Collapse from '@mui/material/Collapse';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import Button from '@mui/material/Button';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -23,14 +25,16 @@ import EmailIcon from '@mui/icons-material/Email';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import ExternalLink from './ExternalLink';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import SimpleFooter from './SimpleFooter';
 import MainVisual from './MainVisual';
 import ProfileCard from './ProfileCard';
-import { useElementClientRect } from '../hooks/ElementClientRect';
-import { useWindowDimensions } from '../hooks/WindowDimensions';
+import { useElementClientRect } from '../hooks/useElementClientRect';
+import { useWindowDimensions } from '../hooks/useWindowDimensions';
 import { styled } from '@mui/material';
 import { user, projectName } from '../data/UserData';
+import { works } from '../data/WorkData';
 
 interface Props {
   window?: () => Window;
@@ -76,38 +80,82 @@ export default function Header(props: Props) {
         {
             icon: <EngineeringIcon />,
             title: 'WORKS',
-            url: '/works'
+            url: '/works',
+            child: works
         }
     ]
+
+    const [drawerItemChildOpen, setDrawerItemChildOpen] = useState<{[key: string]: boolean}>(
+        Object.fromEntries(
+            drawerItems.filter((drawerItem) => (drawerItem.child !== undefined))
+            .map((hasChildItem) => ([hasChildItem.title, true]))
+        )
+    );
+
+    const handleExpandClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const key = event.currentTarget.getAttribute('data-title') ?? '';
+
+        setDrawerItemChildOpen((drawerItemChildOpen) => ({...drawerItemChildOpen, [key]: !drawerItemChildOpen[key]}))
+    };
 
     const drawer = (
         <Box>
             <StyledToolbar />
             <List disablePadding>
-                {drawerItems.map((item, index) => (
+                {drawerItems.map((item) => (
                     <React.Fragment key={item.title}>
-                        <ListItem disablePadding>
+                        <ListItem disablePadding sx={{pr: 0}}>
                             <ListItemButton component={Link} to={item.url}>
                                 <ListItemIcon sx={{ color: 'inherit' }}>
                                     {item.icon}
                                 </ListItemIcon>
                                 <ListItemText primary={item.title} />
                             </ListItemButton>
+                            {item.child &&
+                                <ListItemSecondaryAction>
+                                    <IconButton onClick={handleExpandClick} data-title={item.title}>
+                                        {drawerItemChildOpen[item.title] ? <ExpandLess /> : <ExpandMore />}
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            }
                         </ListItem>
                         <Divider />
+                        {item.child &&
+                            <Collapse in={drawerItemChildOpen[item.title]} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    {item.child.map((child) => (
+                                        <React.Fragment key={child.id}>
+                                            <ListItem disablePadding>
+                                                <ListItemButton component={Link} to={`/work/${child.id}`} sx={{ pl: 4 }}>
+                                                    <ListItemText
+                                                        primary={child.title}
+                                                        primaryTypographyProps={{
+                                                            variant: 'body2',
+                                                            sx: {
+                                                                textOverflow: 'ellipsis',
+                                                                overflow: 'hidden',
+                                                                display: '-webkit-box',
+                                                                WebkitLineClamp: '1',
+                                                                WebkitBoxOrient: 'vertical',
+                                                            }
+                                                        }}
+                                                    />
+                                                </ListItemButton>
+                                            </ListItem>
+                                            <Divider />
+                                        </React.Fragment>
+                                    ))}
+                                </List>
+                            </Collapse>
+                        }
                     </React.Fragment>
                 ))}
             </List>
             <Box sx={{position: 'absolute', bottom: '8px', width: '100%'}}>
                 <Box sx={{display: 'flex', gap: '0 4px', alignItems: "center", justifyContent: "center", width: '100%'}}>
                     {user.links.map((item) => (
-                        <IconButton key={item.url} sx={{ color: 'inherit' }}>
-                            <ExternalLink
-                                url={item.url}
-                                style={{color: 'inherit'}}
-                            >
-                                {item.icon}
-                            </ExternalLink>
+                        <IconButton key={item.url} component={Link} to={item.url} target='_blank' sx={{ color: 'inherit' }}>
+                            {item.icon}
                         </IconButton>
                     ))}
                 </Box>
@@ -149,13 +197,8 @@ export default function Header(props: Props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
                         {user.links.map((item) => (
-                            <IconButton key={item.url} sx={{ color: 'inherit' }}>
-                                <ExternalLink
-                                    url={item.url}
-                                    style={{color: 'inherit'}}
-                                >
-                                    {item.icon}
-                                </ExternalLink>
+                            <IconButton key={item.url} component={Link} to={item.url} target='_blank' sx={{ color: 'inherit' }}>
+                                {item.icon}
                             </IconButton>
                         ))}
                     </Box>
