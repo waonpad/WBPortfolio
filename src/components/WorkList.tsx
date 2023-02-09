@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Box, Typography, styled, Divider } from '@mui/material';
 import WorkCard from './WorkCard';
-import { works } from '../data/WorkData';
+import { works } from '../data/works/WorkData';
 
 type WorkListProps = {
 }
