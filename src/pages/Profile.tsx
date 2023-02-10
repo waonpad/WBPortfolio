@@ -13,7 +13,7 @@ import { user } from '../data/user/UserData';
 type ProfileProps = {
 }
 
-export default function Profile(props: ProfileProps):React.ReactElement {
+export const Profile = (props: ProfileProps) => {
 
     return (
         <Container maxWidth={false} disableGutters>

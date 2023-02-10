@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import { lazyImport } from "./utils/lazyImport";
 import View from './View';
-import Example from "./pages/Example";
-import Top from "./pages/Top";
-import Page404 from "./pages/Page404";
-import Work from "./pages/Work";
-import Profile from "./pages/Profile";
 import Header from "./components/Header";
+
+const { Top } = lazyImport(() => import('./pages/Top'), 'Top');
+const { Example } = lazyImport(() => import('./pages/Example'), 'Example');
+const { Page404 } = lazyImport(() => import('./pages/Page404'), 'Page404');
+const { Work } = lazyImport(() => import('./pages/Work'), 'Work');
+const { Profile } = lazyImport(() => import('./pages/Profile'), 'Profile');
 
 function Root ():React.ReactElement {
     return (
