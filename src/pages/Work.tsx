@@ -4,6 +4,7 @@ import { Container, Divider, Box, Grid, Fab, Dialog, Typography, Avatar, Card, C
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CollectionsIcon from '@mui/icons-material/Collections';
+import DividerPrimary from '../components/DividerPrimary';
 import WorkCard from '../components/WorkCard';
 import WorkGalleryDialog from '../components/WorkGalleryDialog';
 import { works } from '../data/works/WorkData';
@@ -12,12 +13,6 @@ import { useElementClientRect } from '../hooks/useElementClientRect';
 type WorkProps = {
 
 }
-
-const StyledDivider = styled(Divider)({
-    opacity: 0.7,
-    borderColor: '#f00',
-    marginBottom: '8px'
-})
 
 export default function Work(props: WorkProps):React.ReactElement {
 
@@ -30,7 +25,7 @@ export default function Work(props: WorkProps):React.ReactElement {
     return (
         <Container maxWidth={false} disableGutters>
             <Typography variant='h4'>Work</Typography>
-            <StyledDivider sx={{opacity: 0.8, marginBottom: '24px'}} />
+            <DividerPrimary variant='section' />
             <Grid container spacing={2}>
                 {/* 概要 */}
                 <Grid item xs={12} lg={5} xl={4} height='fit-content' sx={{display: {xs: 'none', lg: 'flex'}}}>
@@ -59,7 +54,7 @@ export default function Work(props: WorkProps):React.ReactElement {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Typography variant='h6'>Links</Typography>
-                                        <StyledDivider />
+                                        <DividerPrimary />
                                         <Box
                                             sx={{
                                                 display: 'flex',
@@ -75,7 +70,7 @@ export default function Work(props: WorkProps):React.ReactElement {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Typography variant='h6'>Built with</Typography>
-                                        <StyledDivider />
+                                        <DividerPrimary />
                                         <Box
                                             sx={{
                                                 display: 'flex',
@@ -91,7 +86,7 @@ export default function Work(props: WorkProps):React.ReactElement {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Typography variant='h6'>Overview</Typography>
-                                        <StyledDivider />
+                                        <DividerPrimary />
                                         <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
                                             {work.overview}
                                         </Typography>
@@ -106,7 +101,7 @@ export default function Work(props: WorkProps):React.ReactElement {
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Typography variant='h5'>Detail</Typography>
-                                        <StyledDivider />
+                                        <DividerPrimary />
                                         <Typography variant='body1' sx={{whiteSpace: 'pre-line'}}>
                                             {work.detail}
                                         </Typography>

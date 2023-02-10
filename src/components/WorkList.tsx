@@ -1,22 +1,17 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Box, Typography, styled, Divider } from '@mui/material';
+import DividerPrimary from './DividerPrimary';
 import WorkCard from './WorkCard';
 import { works } from '../data/works/WorkData';
 
 type WorkListProps = {
 }
 
-const StyledDivider = styled(Divider)({
-    opacity: 0.8,
-    borderColor: '#f00',
-    marginBottom: '24px'
-})
-
 export default function WorkList(props: WorkListProps):React.ReactElement {
     return (
         <Box>
             <Typography variant='h4'>Works</Typography>
-            <StyledDivider />
+            <DividerPrimary variant='section' />
             <Box
                 sx={{
                     display: 'flex',
