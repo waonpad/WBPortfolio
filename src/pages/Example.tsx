@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-function Example ():React.ReactElement {
+export const Example = () => {
 
     return(
         <Box>
@@ -9,5 +9,3 @@ function Example ():React.ReactElement {
         </Box>
     )
 }
-
-export default Example;

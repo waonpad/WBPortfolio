@@ -2,12 +2,10 @@ import React from 'react';
 import { Container } from '@mui/material';
 import WorkList from '../components/WorkList';
 
-function Top ():React.ReactElement {
+export const Top = () => {
     return(
         <Container maxWidth={false} disableGutters>
             <WorkList />
         </Container>
     )
 }
-
-export default Top;

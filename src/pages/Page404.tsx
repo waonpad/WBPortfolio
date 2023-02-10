@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function Page404(): React.ReactElement {
+export const Page404 = () => {
     return (
         <React.Fragment>
             <h1>404 NOT FOUND</h1>
@@ -10,5 +10,3 @@ function Page404(): React.ReactElement {
         </React.Fragment>
     );
 }
-
-export default Page404;

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_templete=self.webpackChunkreact_templete||[]).push([[439],{8439:(e,t,l)=>{l.r(t),l.d(t,{Page404:()=>a});var n=l(7294),r=l(9655),a=function(){return n.createElement(n.Fragment,null,n.createElement("h1",null,"404 NOT FOUND"),n.createElement("p",null,"お探しのページが見つかりませんでした。"),n.createElement(r.rU,{to:"/"},"Topに戻る"))}}}]);

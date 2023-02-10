@@ -14,7 +14,7 @@ type WorkProps = {
 
 }
 
-export default function Work(props: WorkProps):React.ReactElement {
+export const Work = (props: WorkProps) => {
 
     const {workId} = useParams<{workId: string}>();
     const work = works.filter((work) => (work.id === Number(workId)))[0];
