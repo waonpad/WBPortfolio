@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, CardMedia, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import DividerPrimary from './DividerPrimary';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { WorkData } from '../data/works/WorkData';
 
@@ -8,12 +9,6 @@ type WorkCardProps = {
     work: WorkData;
     style?: SxProps<Theme> | undefined
 }
-
-const StyledDivider = styled(Divider)({
-    opacity: 0.7,
-    borderColor: '#f00',
-    marginBottom: '8px'
-})
 
 export default function WorkCard(props: WorkCardProps):React.ReactElement {
     const {work, style} = props;
@@ -40,7 +35,7 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Links</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Box
                             sx={{
                                 display: 'flex',
@@ -56,7 +51,7 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Built with</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Box
                             sx={{
                                 display: 'flex',
@@ -72,7 +67,7 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Overview</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
                             {work.overview}
                         </Typography>

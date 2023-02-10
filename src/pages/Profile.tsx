@@ -7,23 +7,18 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
+import DividerPrimary from '../components/DividerPrimary';
 import { user } from '../data/user/UserData';
 
 type ProfileProps = {
 }
-
-const StyledDivider = styled(Divider)({
-    opacity: 0.7,
-    borderColor: '#f00',
-    marginBottom: '8px'
-})
 
 export default function Profile(props: ProfileProps):React.ReactElement {
 
     return (
         <Container maxWidth={false} disableGutters>
             <Typography variant='h4'>About</Typography>
-            <StyledDivider sx={{opacity: 0.8, marginBottom: '24px'}} />
+            <DividerPrimary variant='section' />
             <Grid container spacing={2}>
                 {/* 概要 */}
                 <Grid item xs={12} lg={5} xl={4} height='fit-content'>
@@ -40,7 +35,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant='h6'>Skills</Typography>
-                                    <StyledDivider />
+                                    <DividerPrimary />
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -56,7 +51,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant='h6'>Licenses</Typography>
-                                    <StyledDivider />
+                                    <DividerPrimary />
                                     {user.lisences.map((lisence, index) => (
                                         <Typography key={lisence} variant='body2' lineHeight={'1.7rem'} sx={{whiteSpace: 'pre-line'}}>
                                             {lisence}
@@ -65,7 +60,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant='h6'>Fun</Typography>
-                                    <StyledDivider />
+                                    <DividerPrimary />
                                         {user.fun.map((fun) => (
                                             <Box key={fun.title} sx={{display: 'flex'}}>
                                                 <Typography variant='body2' lineHeight={'1.7rem'}>
@@ -89,7 +84,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
                                         <Typography variant='h5'>Description</Typography>
-                                        <StyledDivider />
+                                        <DividerPrimary />
                                         <Typography variant='body1' sx={{whiteSpace: 'pre-line'}}>
                                             {user.description}
                                         </Typography>
@@ -100,7 +95,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h5'>Career</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Timeline
                             position="right"
                             onResize={undefined}
@@ -138,7 +133,7 @@ export default function Profile(props: ProfileProps):React.ReactElement {
                                                 <Typography variant="h6">
                                                     {career.content.title}
                                                 </Typography>
-                                                <StyledDivider sx={{opacity: 0.5}} />
+                                                <DividerPrimary variant='subhead' />
                                                 <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
                                                     {career.content.text}
                                                 </Typography>

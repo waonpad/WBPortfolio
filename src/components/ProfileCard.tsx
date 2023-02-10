@@ -1,18 +1,13 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import DividerPrimary from './DividerPrimary';
 import { user } from '../data/user/UserData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 
 type ProdileCardProps = {
     style?: SxProps<Theme> | undefined
 }
-
-const StyledDivider = styled(Divider)({
-    opacity: 0.7,
-    borderColor: '#f00',
-    marginBottom: '8px'
-})
 
 function ProfileCard(props: ProdileCardProps):React.ReactElement {
     const {style} = props;
@@ -34,7 +29,7 @@ function ProfileCard(props: ProdileCardProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Skills</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Box
                             sx={{
                                 display: 'flex',
@@ -50,7 +45,7 @@ function ProfileCard(props: ProdileCardProps):React.ReactElement {
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant='h6'>Overview</Typography>
-                        <StyledDivider />
+                        <DividerPrimary />
                         <Typography variant='body2' sx={{whiteSpace: 'pre-line'}}>
                             {user.overview}
                         </Typography>

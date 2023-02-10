@@ -13,7 +13,7 @@ declare module '@mui/material/styles' {
     }
 }
 
-export const globalTheme = createTheme({
+export const appTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
