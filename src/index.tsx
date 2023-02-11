@@ -14,7 +14,7 @@ const { Profile } = lazyImport(() => import('./pages/Profile'), 'Profile');
 function Root ():React.ReactElement {
     return (
         <View>
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Header>
                     <Routes>
                         <Route path='/' element={<Top />} />
