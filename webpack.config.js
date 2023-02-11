@@ -2,6 +2,10 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const Dotenv = require('dotenv-webpack');
+
+const REPO_NAME = 'WBPortfolio';
+
 module.exports = {
 
   entry: path.resolve(__dirname, './src/index.tsx'),
@@ -18,7 +22,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: '/',
+    publicPath: `/${REPO_NAME}/`,
     filename: 'bundle.js',
   },
   resolve: {
@@ -28,6 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new Dotenv()
   ],
   devServer: {
     historyApiFallback: {

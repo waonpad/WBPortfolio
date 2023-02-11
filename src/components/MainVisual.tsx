@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { ClientRect } from '../hooks/useElementClientRect';
+import { PUBLIC_URL } from '../config';
 
 function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
     const {headerClientRect} = props;
@@ -18,7 +19,7 @@ function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
                 //     md: `calc(50vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 //     lg: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 // },
-                // background: `url(${window.location.origin}/images/main_visual.png) center / cover`,
+                // background: `url(${PUBLIC_URL}/images/main_visual.png) center / cover`,
                 background: `rgba(60,60,60)`,
             }}
         >

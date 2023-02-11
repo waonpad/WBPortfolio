@@ -4,6 +4,7 @@ import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, Card
 import DividerPrimary from './DividerPrimary';
 import { user } from '../data/user/UserData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
+import { PUBLIC_URL } from '../config';
 
 type ProdileCardProps = {
     style?: SxProps<Theme> | undefined
@@ -20,7 +21,7 @@ function ProfileCard(props: ProdileCardProps):React.ReactElement {
             <CardContent sx={{pb: 0, mb: cardActionsClientRect ? `${cardActionsClientRect.height}px` : 0}}>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sx={{display: 'flex', alignItems: "center", justifyContent: "center"}}>
-                        {<Avatar src={`${window.location.origin}/images/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
+                        {<Avatar src={`${PUBLIC_URL}/images/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
                     </Grid>
                     <Grid item xs={12} sx={{textAlign: 'center'}}>
                         <Typography fontSize={30}>

@@ -4,6 +4,7 @@ import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, Card
 import DividerPrimary from './DividerPrimary';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { WorkData } from '../data/works/WorkData';
+import { PUBLIC_URL } from '../config';
 
 type WorkCardProps = {
     work: WorkData;
@@ -23,8 +24,8 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
         <Card elevation={1} sx={{...style, position: 'relative'}} ref={cardRef}>
             <CardMedia
                 sx={{ height: cardClientRect ? cardClientRect!.width / 16 * 9 : 0 }}
-                image={`${window.location.origin}/images/main_visual.png`} // テスト用
-                // image={`${window.location.origin}/images/${work.id}/${work.thumbnail.path}`} // 本番
+                image={`${PUBLIC_URL}/images/main_visual.png`} // テスト用
+                // image={`${PUBLIC_URL}/images/${work.id}/${work.thumbnail.path}`} // 本番
             />
             <CardContent sx={{pb: 0, mb: cardActionsClientRect ? `${cardActionsClientRect.height}px` : 0}}>
                 <Grid container spacing={1}>

@@ -9,6 +9,7 @@ import TimelineOppositeContent, { timelineOppositeContentClasses } from '@mui/la
 import TimelineDot from '@mui/lab/TimelineDot';
 import DividerPrimary from '../components/DividerPrimary';
 import { user } from '../data/user/UserData';
+import { PUBLIC_URL } from '../config';
 
 type ProfileProps = {
 }
@@ -26,7 +27,7 @@ export const Profile = (props: ProfileProps) => {
                         <CardContent>
                             <Grid container spacing={1}>
                                 <Grid item xs={12} sx={{display: 'flex', alignItems: "center", justifyContent: "center"}}>
-                                    {<Avatar src={`${window.location.origin}/images/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
+                                    {<Avatar src={`${PUBLIC_URL}/images/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
                                 </Grid>
                                 <Grid item xs={12} sx={{textAlign: 'center'}}>
                                     <Typography fontSize={30}>
@@ -100,6 +101,8 @@ export const Profile = (props: ProfileProps) => {
                             position="right"
                             onReset={undefined}
                             onResetCapture={undefined}
+                            onResize={undefined}
+                            onResizeCapture={undefined}
                             sx={{
                                 px: 0,
                                 [`& .${timelineOppositeContentClasses.root}`]: {
