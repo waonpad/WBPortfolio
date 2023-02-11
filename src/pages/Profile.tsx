@@ -98,8 +98,8 @@ export const Profile = (props: ProfileProps) => {
                         <DividerPrimary />
                         <Timeline
                             position="right"
-                            onResize={undefined}
-                            onResizeCapture={undefined}
+                            onReset={undefined}
+                            onResetCapture={undefined}
                             sx={{
                                 px: 0,
                                 [`& .${timelineOppositeContentClasses.root}`]: {
