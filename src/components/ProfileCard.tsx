@@ -21,7 +21,7 @@ function ProfileCard(props: ProdileCardProps):React.ReactElement {
             <CardContent sx={{pb: 0, mb: cardActionsClientRect ? `${cardActionsClientRect.height}px` : 0}}>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sx={{display: 'flex', alignItems: "center", justifyContent: "center"}}>
-                        {<Avatar src={`${PUBLIC_URL}/images/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
+                        {<Avatar src={`${PUBLIC_URL}/images/profile/${user.avatarPath}`} sx={{height: '200px', width: '200px'}} />}
                     </Grid>
                     <Grid item xs={12} sx={{textAlign: 'center'}}>
                         <Typography fontSize={30}>
