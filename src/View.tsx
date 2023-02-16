@@ -1,6 +1,6 @@
-import React, { useEffect, useState, ReactNode } from 'react';
+import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 import { appTheme } from './Theme';
 

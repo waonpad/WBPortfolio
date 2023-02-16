@@ -195,7 +195,7 @@ export default function Header(props: Props) {
                     >
                         {projectName}
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: '0 8px' }}>
+                    <Box sx={{ display: { xs: 'flex', sm: 'flex' }, gap: '0 8px' }}>
                         {user.links.map((item) => (
                             <IconButton key={item.url} component={Link} to={item.url} target='_blank' sx={{ color: 'inherit' }}>
                                 {item.icon}
@@ -259,7 +259,7 @@ export default function Header(props: Props) {
                 <Box
                     sx={{
                         p: 2,
-                        pb: 100, // テスト用
+                        // pb: 100, // テスト用
                     }}
                     >
                     <ProfileCard

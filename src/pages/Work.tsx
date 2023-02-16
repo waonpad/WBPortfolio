@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef, CSSProperties } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Container, Divider, Box, Grid, Fab, Dialog, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import { Container, Divider, Box, Grid, Fab, Dialog, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme, CardMedia } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import DividerPrimary from '../components/DividerPrimary';
 import WorkCard from '../components/WorkCard';
 import WorkGalleryDialog from '../components/WorkGalleryDialog';
-import { works } from '../data/works/WorkData';
+import { works, dummyImageData } from '../data/works/WorkData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
+import { PUBLIC_URL } from '../config';
 
 type WorkProps = {
 
@@ -22,6 +23,17 @@ export const Work = (props: WorkProps) => {
     const galleryRef = useRef(null);
     const {clientRect} = useElementClientRect(galleryRef);
 
+    const cardRef = useRef(null);
+    const {clientRect: cardClientRect} = useElementClientRect(cardRef);
+
+    const [thumbHeight, setThumbHeight] = useState(0);
+
+    const thumbnail = new Image();
+    thumbnail.onload = () => {
+        setThumbHeight(cardClientRect ? thumbnail.height * cardClientRect!.width / thumbnail.width : 0);
+    }
+    thumbnail.src = work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e';
+
     return (
         <Container maxWidth={false} disableGutters>
             <Typography variant='h4'>Work</Typography>
@@ -29,11 +41,20 @@ export const Work = (props: WorkProps) => {
             <Grid container spacing={2}>
                 {/* 概要 */}
                 <Grid item xs={12} lg={5} xl={4} height='fit-content' sx={{display: {xs: 'none', lg: 'flex'}}}>
-                    <ImageList sx={{mt: 0, width: '100%'}} cols={1} ref={galleryRef}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img} sx={{width: `${clientRect ? clientRect.width : 0}px`}}>
+                    <ImageList sx={{mt: 0, width: '100%'}} cols={1} gap={8} ref={galleryRef}>
+                        <ImageListItem sx={{width: `${clientRect ? clientRect.width : 0}px`}}>
                             <img
-                                src={`${item.img}`}
+                                style={{borderRadius: '4px'}}
+                                src={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'}
+                                alt={work.thumbnail.title}
+                                loading="lazy"
+                            />
+                        </ImageListItem>
+                        {(work.images.length > 0 ? work.images : dummyImageData).map((item) => ( // ダミー
+                            <ImageListItem key={item.path} sx={{width: `${clientRect ? clientRect.width : 0}px`}}>
+                            <img
+                                style={{borderRadius: '4px'}}
+                                src={work.images.length > 0 ? `${PUBLIC_URL}/images/works/${work.id}/${item.path}` : item.path}
                                 alt={item.title}
                                 loading="lazy"
                             />
@@ -44,7 +65,11 @@ export const Work = (props: WorkProps) => {
                 {/* 詳しく */}
                 <Grid item container xs={12} lg={7} xl={8} spacing={2} height='fit-content'>
                     <Grid item xs={12}>
-                        <Card elevation={1}>
+                        <Card elevation={1} ref={cardRef}>
+                            <CardMedia
+                                sx={{ Width: cardClientRect ? cardClientRect!.width : 0, minHeight: thumbHeight, display: {xs: 'block', lg: 'none'} }}
+                                image={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'} // ダミー
+                            />
                             <CardContent>
                                 <Grid container spacing={1}>
                                     <Grid item xs={12}>
@@ -117,55 +142,3 @@ export const Work = (props: WorkProps) => {
         </Container>
     )
 }
-
-
-const itemData = [
-    {
-      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-      title: 'Breakfast',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-      title: 'Burger',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-      title: 'Camera',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      title: 'Coffee',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-      title: 'Hats',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-      title: 'Honey',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-      title: 'Basketball',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-      title: 'Fern',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-      title: 'Mushrooms',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-      title: 'Tomato basil',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-      title: 'Sea star',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-      title: 'Bike',
-    },
-  ];

@@ -1,5 +1,4 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { green, grey, yellow } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
     interface BreakpointOverrides {
@@ -46,13 +45,6 @@ export const appTheme = createTheme({
                 'img': {verticalAlign: 'bottom'}
             }
         },
-        // MuiBackdrop: {
-        //     styleOverrides: {
-        //         root: {
-        //             backgroundColor: '#353535'
-        //         }
-        //     }
-        // },
         MuiDrawer: {
             styleOverrides: {
                 paper: {
@@ -60,13 +52,5 @@ export const appTheme = createTheme({
                 }
             }
         },
-        // MuiDivider: {
-        //     styleOverrides: {
-        //         root: {
-        //             opacity: 0.5,
-        //             borderColor: '#f00'
-        //         }
-        //     }
-        // }
     }
 });

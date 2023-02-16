@@ -20,12 +20,19 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
     const cardActionsRef = useRef(null);
     const {clientRect: cardActionsClientRect} = useElementClientRect(cardActionsRef);
 
+    const [thumbHeight, setThumbHeight] = useState(0);
+
+    const thumbnail = new Image();
+    thumbnail.onload = () => {
+        setThumbHeight(cardClientRect ? thumbnail.height * cardClientRect!.width / thumbnail.width : 0);
+    }
+    thumbnail.src = work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e';
+
     return (
         <Card elevation={1} sx={{...style, position: 'relative'}} ref={cardRef}>
             <CardMedia
-                sx={{ height: cardClientRect ? cardClientRect!.width / 16 * 9 : 0 }}
-                image={`${PUBLIC_URL}/images/main_visual.png`} // テスト用
-                // image={`${PUBLIC_URL}/images/${work.id}/${work.thumbnail.path}`} // 本番
+                sx={{ Width: cardClientRect ? cardClientRect!.width : 0, minHeight: thumbHeight }}
+                image={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'} // ダミー
             />
             <CardContent sx={{pb: 0, mb: cardActionsClientRect ? `${cardActionsClientRect.height}px` : 0}}>
                 <Grid container spacing={1}>
