@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react';
-import { Box, Typography, styled, Divider } from '@mui/material';
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 import DividerPrimary from './DividerPrimary';
 import WorkCard from './WorkCard';
 import { works } from '../data/works/WorkData';
 
-type WorkListProps = {
-}
-
-export default function WorkList(props: WorkListProps):React.ReactElement {
+export default function WorkList() {
     return (
         <Box>
             <Typography variant='h4'>Works</Typography>

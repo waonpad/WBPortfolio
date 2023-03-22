@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react';
-import { Container, Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import React from 'react';
+import { Container, Divider, Box, Grid, Typography, Avatar, Card, CardContent, Chip } from '@mui/material';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -11,10 +11,7 @@ import DividerPrimary from '../components/DividerPrimary';
 import { user } from '../data/user/UserData';
 import { PUBLIC_URL } from '../config';
 
-type ProfileProps = {
-}
-
-export const Profile = (props: ProfileProps) => {
+export const Profile = () => {
 
     return (
         <Container maxWidth={false} disableGutters>

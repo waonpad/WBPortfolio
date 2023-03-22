@@ -1,13 +1,13 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React from 'react';
 import { Box, Typography, SxProps, Theme } from '@mui/material';
 import { projectName } from '../data/user/UserData';
 
 type SimpleFooterProps = {
     wrap?: boolean;
-    style?: SxProps<Theme> | undefined
+    style?: SxProps<Theme>;
 }
 
-function SimpleFooter(props: SimpleFooterProps): React.ReactElement {
+function SimpleFooter(props: SimpleFooterProps) {
     const {wrap, style} = props;
 
     return (
