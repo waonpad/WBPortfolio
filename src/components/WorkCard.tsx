@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, CardMedia, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import { Box, Grid, Typography, Card, CardContent, Button, CardActions, CardMedia, Chip, SxProps, Theme } from '@mui/material';
 import DividerPrimary from './DividerPrimary';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { WorkData } from '../data/works/WorkData';
@@ -8,10 +8,10 @@ import { PUBLIC_URL } from '../config';
 
 type WorkCardProps = {
     work: WorkData;
-    style?: SxProps<Theme> | undefined
+    style?: SxProps<Theme>;
 }
 
-export default function WorkCard(props: WorkCardProps):React.ReactElement {
+export default function WorkCard(props: WorkCardProps) {
     const {work, style} = props;
 
     const cardRef = useRef(null);
@@ -26,13 +26,13 @@ export default function WorkCard(props: WorkCardProps):React.ReactElement {
     thumbnail.onload = () => {
         setThumbHeight(cardClientRect ? thumbnail.height * cardClientRect!.width / thumbnail.width : 0);
     }
-    thumbnail.src = work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e';
+    thumbnail.src = `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}`;
 
     return (
         <Card elevation={1} sx={{...style, position: 'relative'}} ref={cardRef}>
             <CardMedia
                 sx={{ Width: cardClientRect ? cardClientRect!.width : 0, minHeight: thumbHeight }}
-                image={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'} // ダミー
+                image={`${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}`}
             />
             <CardContent sx={{pb: 0, mb: cardActionsClientRect ? `${cardActionsClientRect.height}px` : 0}}>
                 <Grid container spacing={1}>

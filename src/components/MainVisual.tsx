@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { ClientRect } from '../hooks/useElementClientRect';
 import { PUBLIC_URL } from '../config';
 
-function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
+function MainVisual(props: {headerClientRect: ClientRect}) {
     const {headerClientRect} = props;
 
     return (
@@ -19,8 +19,7 @@ function MainVisual(props: {headerClientRect: ClientRect}):React.ReactElement {
                 //     md: `calc(50vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 //     lg: `calc(100vh - ${headerClientRect ? headerClientRect!.height : 0}px)`,
                 // },
-                background: `url(${PUBLIC_URL}/images/main_visual.png) center / cover`,
-                // background: `rgba(60,60,60)`,
+                background: `url(${PUBLIC_URL}/images/main_visual.jpg) center / cover`,
             }}
         >
             <></>

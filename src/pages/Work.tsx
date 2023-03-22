@@ -1,24 +1,18 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Container, Divider, Box, Grid, Fab, Dialog, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme, CardMedia } from '@mui/material';
+import { Container, Box, Grid, Typography, Card, CardContent, Chip, CardMedia } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import CollectionsIcon from '@mui/icons-material/Collections';
 import DividerPrimary from '../components/DividerPrimary';
-import WorkCard from '../components/WorkCard';
 import WorkGalleryDialog from '../components/WorkGalleryDialog';
-import { works, dummyImageData } from '../data/works/WorkData';
+import { works } from '../data/works/WorkData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { PUBLIC_URL } from '../config';
 
-type WorkProps = {
-
-}
-
-export const Work = (props: WorkProps) => {
+export const Work = () => {
 
     const {workId} = useParams<{workId: string}>();
-    const work = works.filter((work) => (work.id === Number(workId)))[0];
+    const work = works.filter((work) => (String(work.id) === (workId)))[0];
 
     const galleryRef = useRef(null);
     const {clientRect} = useElementClientRect(galleryRef);
@@ -32,7 +26,7 @@ export const Work = (props: WorkProps) => {
     thumbnail.onload = () => {
         setThumbHeight(cardClientRect ? thumbnail.height * cardClientRect!.width / thumbnail.width : 0);
     }
-    thumbnail.src = work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e';
+    thumbnail.src = `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}`;
 
     return (
         <Container maxWidth={false} disableGutters>
@@ -45,16 +39,16 @@ export const Work = (props: WorkProps) => {
                         <ImageListItem sx={{width: `${clientRect ? clientRect.width : 0}px`}}>
                             <img
                                 style={{borderRadius: '4px'}}
-                                src={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'}
+                                src={`${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}`}
                                 alt={work.thumbnail.title}
                                 loading="lazy"
                             />
                         </ImageListItem>
-                        {(work.images.length > 0 ? work.images : dummyImageData).map((item) => ( // ダミー
+                        {(work.images).map((item) => (
                             <ImageListItem key={item.path} sx={{width: `${clientRect ? clientRect.width : 0}px`}}>
                             <img
                                 style={{borderRadius: '4px'}}
-                                src={work.images.length > 0 ? `${PUBLIC_URL}/images/works/${work.id}/${item.path}` : item.path}
+                                src={`${PUBLIC_URL}/images/works/${work.id}/${item.path}`}
                                 alt={item.title}
                                 loading="lazy"
                             />
@@ -68,7 +62,7 @@ export const Work = (props: WorkProps) => {
                         <Card elevation={1} ref={cardRef}>
                             <CardMedia
                                 sx={{ Width: cardClientRect ? cardClientRect!.width : 0, minHeight: thumbHeight, display: {xs: 'block', lg: 'none'} }}
-                                image={work.thumbnail.path !== '' ? `${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}` : 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'} // ダミー
+                                image={`${PUBLIC_URL}/images/works/${work.id}/${work.thumbnail.path}`}
                             />
                             <CardContent>
                                 <Grid container spacing={1}>

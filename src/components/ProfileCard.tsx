@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useRef, CSSProperties } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, Collapse, IconButton, styled, SxProps, Theme } from '@mui/material';
+import { Box, Grid, Typography, Avatar, Card, CardContent, Button, CardActions, Chip, SxProps, Theme } from '@mui/material';
 import DividerPrimary from './DividerPrimary';
 import { user } from '../data/user/UserData';
 import { useElementClientRect } from '../hooks/useElementClientRect';
 import { PUBLIC_URL } from '../config';
 
 type ProdileCardProps = {
-    style?: SxProps<Theme> | undefined
+    style?: SxProps<Theme>;
 }
 
-function ProfileCard(props: ProdileCardProps):React.ReactElement {
+function ProfileCard(props: ProdileCardProps) {
     const {style} = props;
 
     const cardActionsRef = useRef(null);

@@ -3,11 +3,11 @@ import { Divider, SxProps, Theme } from '@mui/material';
 import { appTheme } from '../Theme';
 
 type DividerPrimaryProps = {
-    sx?: SxProps<Theme> | undefined;
+    sx?: SxProps<Theme>;
     variant?: 'section' | 'head' | 'subhead';
 }
 
-function DividerPrimary(props: DividerPrimaryProps):React.ReactElement {
+function DividerPrimary(props: DividerPrimaryProps) {
     const {sx, variant} = props;
 
     const marginBottom = variant === 'section' ? '24px'
